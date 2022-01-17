@@ -1,60 +1,37 @@
 package com.codegym;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BookManagement {
-    private TheMuonSach[] theMuonSach = new TheMuonSach[0];
-
-    public TheMuonSach[] getTheMuonSach() {
-        return theMuonSach;
-    }
-
-    public void setTheMuonSach(TheMuonSach[] theMuonSach) {
-        this.theMuonSach = theMuonSach;
-    }
+    private List<TheMuonSach> theMuonSachs = new ArrayList<>();
 
     public int size() {
-        return theMuonSach.length;
+        return theMuonSachs.size();
     }
 
     public void displayAllTheMuonSach() {
         for (int i = 0; i < size(); i++) {
-            System.out.println(theMuonSach[i]);
+            System.out.println(theMuonSachs.get(i));
         }
     }
 
     public void addNewTheMuonSach(int index, TheMuonSach theMuonSach) {
-        TheMuonSach[] newTheMuonSach = new TheMuonSach[size() + 1];
-        for (int i = 0; i < newTheMuonSach.length; i++) {
-            if (i < index) {
-                newTheMuonSach[i] = this.theMuonSach[i];
-            } else if (i == index) {
-                newTheMuonSach[i] = theMuonSach;
-            } else {
-                newTheMuonSach[i] = this.theMuonSach[i - 1];
-            }
-        }
-        this.theMuonSach = newTheMuonSach;
+        theMuonSachs.add(index, theMuonSach);
     }
 
     public void updateTheMuonSach(int index, TheMuonSach theMuonSach) {
-        this.theMuonSach[index] = theMuonSach;
+        theMuonSachs.set(index, theMuonSach);
     }
 
-    public void removeTheMuonSach(int index){
-        TheMuonSach[] newTheMuonSach = new TheMuonSach[size() - 1];
-        for (int i = 0; i < newTheMuonSach.length; i++) {
-            if (i < index) {
-                newTheMuonSach[i] = this.theMuonSach[i];
-            } else {
-                newTheMuonSach[i] = this.theMuonSach[i + 1];
-            }
-        }
-        this.theMuonSach = newTheMuonSach;
+    public void removeTheMuonSach(int index) {
+        theMuonSachs.remove(index);
     }
 
-    public int timKiemThMuonSach(String maSinhVien){
+    public int timKiemThMuonSach(String maSinhVien) {
         int index = -1;
         for (int i = 0; i < size(); i++) {
-            if (this.theMuonSach[i].getMaSinhVien().equals(maSinhVien)) {
+            if (this.theMuonSachs.get(i).getMaSinhVien().equals(maSinhVien)) {
                 index = i;
             }
         }
@@ -62,7 +39,7 @@ public class BookManagement {
     }
 
     public void displayTheMuonSach(int index) {
-        System.out.println(this.theMuonSach[index]);
+        System.out.println(this.theMuonSachs.get(index));
     }
 
 }

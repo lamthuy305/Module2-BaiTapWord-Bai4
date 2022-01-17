@@ -21,55 +21,25 @@ public class Main {
                 case 2: {
                     scanner.nextLine();
                     System.out.println("---Thêm thẻ mượn sách---");
-                    System.out.println("Nhập vị trí muốn thêm: ");
-                    int index = scanner.nextInt();
-                    scanner.nextLine();
-                    if (index < 0 || index > bookManagement.size()) {
-                        System.out.println("Vị trí thêm vào không hợp lệ");
-                    } else {
-                        TheMuonSach theMuonSach = getBookManagement();
-                        bookManagement.addNewTheMuonSach(index, theMuonSach);
-                    }
+                    case2(bookManagement);
                     break;
                 }
                 case 3: {
                     scanner.nextLine();
                     System.out.println("---Cập nhật thẻ mượn sách: ");
-                    System.out.println("Nhập vị trí muốn sửa: ");
-                    int index = scanner.nextInt();
-                    scanner.nextLine();
-                    if (index < 0 || index >= bookManagement.size()) {
-                        System.out.println("Vị trí sửa vào không hợp lệ");
-                    } else {
-                        TheMuonSach theMuonSach = getBookManagement();
-                        bookManagement.updateTheMuonSach(index, theMuonSach);
-                    }
+                    case3(bookManagement);
                     break;
                 }
                 case 4: {
                     scanner.nextLine();
                     System.out.println("---Xóa thẻ mượn sách---");
-                    System.out.println("Nhập vị trí muốn xóa:");
-                    int index = scanner.nextInt();
-                    scanner.nextLine();
-                    if (index < 0 || index >= bookManagement.size()) {
-                        System.out.println("Vị trí xóa không hợp lệ");
-                    } else {
-                        bookManagement.removeTheMuonSach(index);
-                    }
+                    case4(bookManagement);
                     break;
                 }
                 case 5: {
                     scanner.nextLine();
                     System.out.println("---Tìm kiếm và tra cứu thẻ mượn sách theo mã sinh viên---");
-                    System.out.println("Nhập mã sinh viên cần tra cứu: ");
-                    String maSinhVien = scanner.nextLine();
-                    int index = bookManagement.timKiemThMuonSach(maSinhVien);
-                    if (index == -1) {
-                        System.out.println("Không có thẻ mượn sách của sinh viên này !!!");
-                    }else {
-                        bookManagement.displayTheMuonSach(index);
-                    }
+                    case5(bookManagement);
                     break;
                 }
                 case 0: {
@@ -81,6 +51,52 @@ public class Main {
             }
         } while (choice != 0);
 
+    }
+
+    private static void case5(BookManagement bookManagement) {
+        System.out.println("Nhập mã sinh viên cần tra cứu: ");
+        String maSinhVien = scanner.nextLine();
+        int index = bookManagement.timKiemThMuonSach(maSinhVien);
+        if (index == -1) {
+            System.out.println("Không có thẻ mượn sách của sinh viên này !!!");
+        } else {
+            bookManagement.displayTheMuonSach(index);
+        }
+    }
+
+    private static void case4(BookManagement bookManagement) {
+        System.out.println("Nhập vị trí muốn xóa:");
+        int index = scanner.nextInt();
+        scanner.nextLine();
+        if (index < 0 || index >= bookManagement.size()) {
+            System.out.println("Vị trí xóa không hợp lệ");
+        } else {
+            bookManagement.removeTheMuonSach(index);
+        }
+    }
+
+    private static void case3(BookManagement bookManagement) {
+        System.out.println("Nhập vị trí muốn sửa: ");
+        int index = scanner.nextInt();
+        scanner.nextLine();
+        if (index < 0 || index >= bookManagement.size()) {
+            System.out.println("Vị trí sửa vào không hợp lệ");
+        } else {
+            TheMuonSach theMuonSach = getBookManagement();
+            bookManagement.updateTheMuonSach(index, theMuonSach);
+        }
+    }
+
+    private static void case2(BookManagement bookManagement) {
+        System.out.println("Nhập vị trí muốn thêm: ");
+        int index = scanner.nextInt();
+        scanner.nextLine();
+        if (index < 0 || index > bookManagement.size()) {
+            System.out.println("Vị trí thêm vào không hợp lệ");
+        } else {
+            TheMuonSach theMuonSach = getBookManagement();
+            bookManagement.addNewTheMuonSach(index, theMuonSach);
+        }
     }
 
     private static TheMuonSach getBookManagement() {
